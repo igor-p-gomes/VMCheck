@@ -17,5 +17,5 @@ def show_index():
 @app.route('/match/<fname>')
 def match_fname(fname):
     full_filename = "/static/"+fname+".jpg"
-	vmcorreto = open("/static/"+fname+".jpg")
+	vmcorreto = open(os.path.join(app.static_folder,fname+".jpg","rb").read()
     return render_template("index.html", user_image = full_filename)

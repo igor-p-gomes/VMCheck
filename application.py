@@ -42,6 +42,6 @@ def upload_file():
 	
 @app.route('/match/<fname>')
 def match_fname(fname):
-	full_filename = secure_filename(UPLOAD_FOLDER+fname+".jpg")
-	vmcorreto = open(full_filename,"rb").read()
+	full_filename = UPLOAD_FOLDER+fname+".jpg"
+	#vmcorreto = open(full_filename,"rb").read()
 	return render_template("index.html", user_image = full_filename)

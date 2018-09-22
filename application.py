@@ -24,8 +24,8 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/', methods=['GET', 'POST'])
-def show_index():
-if request.method == 'POST':
+def upload_file():
+    if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
@@ -51,8 +51,8 @@ if request.method == 'POST':
     </form>
     '''
 	
-@app.route('/match/<fname>')
-def match_fname(fname):
-    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], fname+".jpg")
-	#vmcorreto = open(full_filename,"rb").read()
-    return render_template("index.html", user_image = full_filename)
+#@app.route('/match/<fname>')
+#def match_fname(fname):
+#	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], fname+".jpg")
+#	vmcorreto = open(full_filename,"rb").read()
+#	return render_template("index.html", user_image = full_filename)

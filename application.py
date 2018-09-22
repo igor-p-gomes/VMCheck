@@ -28,8 +28,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+
     return '''
     <!doctype html>
     <title>Upload new File</title>
@@ -40,8 +39,8 @@ def upload_file():
     </form>
     '''
 	
-#@app.route('/match/<fname>')
-#def match_fname(fname):
-#	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], fname+".jpg")
-#	vmcorreto = open(full_filename,"rb").read()
-#	return render_template("index.html", user_image = full_filename)
+@app.route('/match/<fname>')
+def match_fname(fname):
+	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], fname+".jpg")
+	vmcorreto = open(full_filename,"rb").read()
+	return render_template("index.html", user_image = full_filename)

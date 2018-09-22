@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for
 import os
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -16,4 +17,5 @@ def show_index():
 @app.route('/match/<fname>')
 def match_fname(fname):
     full_filename = "/static/"+fname+".jpg"
+	vmcorreto = open("/static/"+fname+".jpg")
     return render_template("index.html", user_image = full_filename)

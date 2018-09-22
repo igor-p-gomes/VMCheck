@@ -10,5 +10,10 @@ resultado = ""
 
 @app.route('/')
 def show_index():
+    full_filename = "/static/images/yourimage.jpg"
+    return render_template("index.html", user_image = full_filename)
+	
+@app.route('/secret')
+def show_index():
     full_filename = "MC_03_2_jpg.jpg"
     return render_template("index.html", user_image = full_filename)

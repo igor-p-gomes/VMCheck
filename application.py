@@ -1,5 +1,5 @@
 import os
-from PIL import Image
+#from PIL import Image
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 

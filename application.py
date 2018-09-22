@@ -27,18 +27,17 @@ def upload_file():
         # if user does not select file, browser also
         # submit an empty part without filename
         if file.filename == '':
-            flash('Nenhum arquivo enviado')
+            flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(UPLOAD_FOLDER+filename)
+            file.save(UPLOAD_FOLDER+filename))
             return redirect(url_for('uploaded_file',
                                     filename=filename))
     return '''
     <!doctype html>
-    <title>Informe de VM:</title>
-    <h1>Entre com o Informe de VM</h1>
-	<h2>Formato .jpg</h2>
+    <title>Upload new File</title>
+    <h1>Informe de VM em jpg</h1>
     <form method=post enctype=multipart/form-data>
       <input type=file name=file>
       <input type=submit value=Upload>

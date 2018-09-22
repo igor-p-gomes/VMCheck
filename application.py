@@ -13,7 +13,7 @@ def show_index():
     full_filename = "/static/MC_03_2_jpg.jpg"
     return render_template("index.html", user_image = full_filename)
 	
-@app.route('/secret')
-def show_secret():
-    full_filename = "MC_03_2_jpg.jpg"
+@app.route('/match/<fname>')
+def match_fname(fname):
+    full_filename = "/static/"+fname+".jpg"
     return render_template("index.html", user_image = full_filename)

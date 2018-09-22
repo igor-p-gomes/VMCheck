@@ -1,22 +1,11 @@
-from flask import Flask, render_template, request, url_for
 import os
-from PIL import Image
-import glob
-#import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-from scipy import misc
-import numpy as np
+from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
-
-vmcorreto = ""
-vmchecado = ""
-resultado = ""
-
 UPLOAD_FOLDER = '/uploads'
-ALLOWED_EXTENSIONS = set(['jpg'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
+app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):

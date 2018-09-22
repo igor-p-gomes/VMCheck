@@ -1,6 +1,10 @@
 import os
+import numpy as np
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
+from azure.cognitiveservices.vision.customvision.prediction import prediction_endpoint
+from azure.cognitiveservices.vision.customvision.prediction.prediction_endpoint import models
+from PIL import Image
 
 UPLOAD_FOLDER = '/home/site/wwwroot/uploads/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -23,7 +27,7 @@ def upload_file():
         # if user does not select file, browser also
         # submit an empty part without filename
         if file.filename == '':
-            flash('No selected file')
+            flash('Nenhum arquivo enviado')
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -32,8 +36,9 @@ def upload_file():
                                     filename=filename))
     return '''
     <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
+    <title>Informe de VM:</title>
+    <h1>Entre com o Informe de VM</h1>
+	<h2>Formato .jpg</h2>
     <form method=post enctype=multipart/form-data>
       <input type=file name=file>
       <input type=submit value=Upload>
@@ -42,6 +47,6 @@ def upload_file():
 	
 @app.route('/match/<fname>')
 def match_fname(fname):
-	full_filename = secure_filename(fname+".jpg")
+	full_filename = secure_filename(UPLOAD_FOLDER+fname+".jpg")
 	vmcorreto = open(full_filename,"rb").read()
 	return render_template("index.html", user_image = full_filename)

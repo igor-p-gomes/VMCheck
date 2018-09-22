@@ -1,6 +1,11 @@
 from flask import Flask, render_template, request, url_for
 import os
 from PIL import Image
+import glob
+#import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+from scipy import misc
+import numpy as np
 
 app = Flask(__name__)
 

@@ -1,10 +1,6 @@
 import os
-import numpy as np
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
-from azure.cognitiveservices.vision.customvision.prediction import prediction_endpoint
-from azure.cognitiveservices.vision.customvision.prediction.prediction_endpoint import models
-from PIL import Image
 
 UPLOAD_FOLDER = '/home/site/wwwroot/uploads/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -31,7 +27,7 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(UPLOAD_FOLDER+filename))
+            file.save(UPLOAD_FOLDER+filename)
             return redirect(url_for('uploaded_file',
                                     filename=filename))
     return '''

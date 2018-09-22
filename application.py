@@ -14,6 +14,6 @@ def show_index():
     return render_template("index.html", user_image = full_filename)
 	
 @app.route('/secret')
-def show_index():
+def show_secret():
     full_filename = "MC_03_2_jpg.jpg"
     return render_template("index.html", user_image = full_filename)

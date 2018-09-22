@@ -1,4 +1,5 @@
 import os
+from PIL import Image
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
@@ -44,4 +45,5 @@ def upload_file():
 def match_fname(fname):
 	full_filename = UPLOAD_FOLDER+"teste.jpg"
 	#vmcorreto = open(full_filename,"rb").read()
-	return render_template("index.html", user_image = full_filename)
+	#return render_template("index.html", user_image = full_filename)
+	return 

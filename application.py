@@ -1,11 +1,18 @@
 import os
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
+from azure.storage.blob import BlockBlobService
+import string, random, requests
+from flask.ext.azure_storage import FlaskAzureStorage
 
 UPLOAD_FOLDER = '/tmp/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+AZURE_STORAGE_ACCOUNT_NAME = "your-account-name"
+AZURE_STORAGE_ACCOUNT_KEY = "your-account-key"
+
 
 app = Flask(__name__)
+azure_storage = FlaskAzureStorage(app)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -29,12 +36,4 @@ def upload_file():
             file.save(os.path.join(UPLOAD_FOLDER, filename))
             return redirect(url_for('uploaded_file',
                                     filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
+    return render_template("index.html", user_image = full_filename)
